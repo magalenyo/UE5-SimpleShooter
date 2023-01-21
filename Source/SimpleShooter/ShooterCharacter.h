@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "ShooterCharacter.generated.h"
 
+class AGun;
+
 UCLASS()
 class SIMPLESHOOTER_API AShooterCharacter : public ACharacter
 {
@@ -29,6 +31,12 @@ public:
 private:
 	UPROPERTY(EditAnywhere)
 	float rotationRate = 40;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AGun> gunClass;
+
+	UPROPERTY()
+	AGun* gun;
 
 	void MoveForward(float AxisValue);	// No additional methods needed for controller input since it already is suported for both (it takes a rate instead of a value)
 	void MoveRight(float AxisValue);
