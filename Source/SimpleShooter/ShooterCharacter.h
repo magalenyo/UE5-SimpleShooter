@@ -45,5 +45,6 @@ private:
 	void LookRight(float AxisValue);
 	void LookRightRate(float AxisValue);
 	void JumpUp();
+	void Shoot();
 
 };

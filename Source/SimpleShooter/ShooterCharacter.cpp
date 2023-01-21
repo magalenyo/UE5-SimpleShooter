@@ -43,6 +43,8 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAxis(TEXT("LookRightRate"), this, &AShooterCharacter::LookRight);
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &AShooterCharacter::JumpUp);
+	PlayerInputComponent->BindAction(TEXT("Shoot"), IE_Pressed, this, &AShooterCharacter::Shoot);
+
 }
 
 void AShooterCharacter::MoveForward(float AxisValue)
@@ -78,5 +80,10 @@ void AShooterCharacter::LookRightRate(float AxisValue)
 void AShooterCharacter::JumpUp()
 {
 	Jump();
+}
+
+void AShooterCharacter::Shoot()
+{
+	gun->PullTrigger();
 }
 

@@ -23,11 +23,21 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void PullTrigger();
+
 private:
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* root;
 
 	UPROPERTY(VisibleAnywhere)
-	USkeletalMeshComponent* mesh; // Should be StaticMesh but the assets are not, so we use Skeletal
+	USkeletalMeshComponent* mesh; 		// Should be StaticMesh but the assets are not, so we use Skeletal
 
+	UPROPERTY(EditAnywhere)
+	UParticleSystem* muzzleFlash;
+
+	UPROPERTY(EditAnywhere)
+	UParticleSystem* impactEffect;
+
+	UPROPERTY(EditAnywhere)
+	float maxRange = 1000;
 };
