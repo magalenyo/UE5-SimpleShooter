@@ -28,6 +28,8 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
+
 private:
 	UPROPERTY(EditAnywhere)
 	float rotationRate = 40;
@@ -37,6 +39,15 @@ private:
 
 	UPROPERTY()
 	AGun* gun;
+
+	UPROPERTY(EditDefaultsOnly)
+	float maxHealth = 100;
+
+	UPROPERTY(VisibleAnywhere)
+	float health;
+
+	UFUNCTION(BlueprintPure)		// It does blueprint callable + other stuff. A pure nonde is a node that doesn't have an execution pin, it only has a result
+	bool IsDead() const;
 
 	void MoveForward(float AxisValue);	// No additional methods needed for controller input since it already is suported for both (it takes a rate instead of a value)
 	void MoveRight(float AxisValue);
