@@ -41,6 +41,12 @@ void AGun::PullTrigger()
 		TEXT("MuzzleFlashSocket")
 	);
 
+	UGameplayStatics::SpawnSoundAttached(
+		muzzleSound,
+		mesh,
+		TEXT("MuzzleFlashSocket")
+	);
+
 	FHitResult hit;
 	FVector shotDirection;
 	bool success = GunTrace(hit, shotDirection);
@@ -50,6 +56,12 @@ void AGun::PullTrigger()
 			impactEffect,
 			hit.Location,
 			shotDirection.Rotation()
+		);
+
+		UGameplayStatics::PlaySoundAtLocation(
+			GetWorld(),
+			impactSound,
+			hit.Location
 		);
 
 		AActor* hitActor = hit.GetActor();
@@ -94,7 +106,7 @@ bool AGun::GunTrace(FHitResult &hit, FVector& shotDirection)
 AController* AGun::GetOwnerController() const
 {
 	APawn* ownerPawn = Cast<APawn>(GetOwner());
-	if (!ownerPawn) return;
+	if (!ownerPawn) return nullptr;
 	return ownerPawn->GetController();
 }
 
