@@ -32,6 +32,9 @@ public:
 
 	void Shoot();
 
+	UFUNCTION(BlueprintPure)		// It does blueprint callable + other stuff. A pure nonde is a node that doesn't have an execution pin, it only has a result
+	bool IsDead() const;
+
 private:
 	UPROPERTY(EditAnywhere)
 	float rotationRate = 40;
@@ -47,9 +50,6 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	float health;
-
-	UFUNCTION(BlueprintPure)		// It does blueprint callable + other stuff. A pure nonde is a node that doesn't have an execution pin, it only has a result
-	bool IsDead() const;
 
 	void MoveForward(float AxisValue);	// No additional methods needed for controller input since it already is suported for both (it takes a rate instead of a value)
 	void MoveRight(float AxisValue);
